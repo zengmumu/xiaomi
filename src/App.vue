@@ -5,10 +5,10 @@
     
     
     <div class="tabs row tac">
-      <router-link  class="col"  to="/home">首页</router-link>
-      <router-link  class="col" to="/home">分类</router-link>
-      <router-link  class="col" to="/about">购物车</router-link>
-      <router-link  class="col" to="/about">我 的</router-link>
+      <router-link  class="col"  to="/">首页</router-link>
+      <router-link  class="col" to="/category">分类</router-link>
+      <router-link  class="col" to="/cart">购物车</router-link>
+      <router-link  class="col" to="/user">我 的</router-link>
 
     </div>
   </div>
@@ -27,7 +27,16 @@
 
 
 // 文字大小
-@f-size:13px;
+@f-size:.13rem;
+.fbig{
+ font-size:.17rem;
+}
+.fsmall{
+  font-size:.11rem;
+}
+.fxsmall{
+  font-size:.08rem;
+}
 
 /*********** body***********/
 body{
@@ -38,11 +47,14 @@ body{
   color:@tcolor;
 }
 /*********** 栅格系统***********/
-.row{ display: flex; width:100%; padding: 8px;}
+.row{ display: flex; width:100%; padding: 8px; box-sizing: border-box;}
+.row-wrap{
+  flex-wrap: wrap;
+}
 .row-center{ align-items: center;}
 .row-right{ align-items: flex-end}
 .row-left{ align-items: flex-start}
-.col{ flex:1;}
+.col{ flex:1; }
 .col-top{ align-self: flex-end}
 .col-center{ align-self: center}
 .col-bottom{ align-self: flex-end}
@@ -55,9 +67,11 @@ body{
 .col-70{ flex:0 0 70%;}
 .col-80{ flex:0 0 80%;}
 .col-90{ flex:0 0 90%;}
-.col-33{ flex:0 0 33.3%}
+.col-100{ flex:0 0 100%;}
+.col-33{ flex:0 0 33.3%; max-width:33.3%}
 .col-66{ flex:0 0 66.7%}
 .col-25{ flex:0 0 25%;}
+
 /*********** 定位系统***********/
 .pr{ position: relative;}
 .pa{ position: absolute;}
@@ -71,9 +85,10 @@ body{
 /*********** 模  块 ***********/  
 .tabs{ 
   .pf;
-  height:49px;
+  height:.49rem;
   bottom:0;
   background-color: #fff;
+  box-shadow: 0 -5px 15px rgba(220,220,220,.3);
   }
 .content{
   .full;
@@ -98,15 +113,42 @@ body{
   top:0;
   left:0;
   z-index: 100;
+  .btn:nth-of-type(1){
+    .pa;
+    left:0;
+    top:0;
+    border:none;
+  }
+  .btn:nth-of-type(2){
+    .pa;
+    right:0;
+    top:0;
+     border:none;
+  }
 }
 .sub-header{
   .bar-header;
   top:44px;
 
 }
+.btn{
+  line-height: .44rem;  
+ .plr16;
+  border:1px solid #f2f2f2;
+  border-radius: 0.06rem;
+  .iblock;
+}
+.item{
+  line-height: 0.44rem;
+}
 /*********** 文字对齐 ***********/  
 .tac{ text-align: center;}
 .tar{ text-align: right;}
+.thidden{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 /*********** 默认控件 ***********/  
 input[type=text]{
   border:none;
@@ -114,4 +156,26 @@ input[type=text]{
   width: 100%;
   line-height: 28px;
 }
+/*********** display ***********/  
+.block{ display: block};
+.iblock{ display: inline-block}
+.nowrap{ white-space: nowrap;}
+.ofhidden{ overflow: hidden;}
+.ofhidden-x{ overflow-x:hidden;}
+.ofvisible-x{ overflow-x:auto;}
+.ofvisible-y{ overflow-y:auto;}
+/*********** padding ***********/  
+.plr{ padding-left: 8px; padding-right: 8px;}
+.plr16{ padding-left: 16px; padding-right: 16px;}
+.nopadding{ padding: 0;}
+/***********border ***********/  
+.bo{border:1px solid #f0f0f0;}
+.bol{border-left:1px solid #f0f0f0;}
+.bor{border-right:1px solid #f0f0f0;}
+.bot{border-top:1px solid #f0f0f0;}
+.bob{border-bottom:1px solid #f0f0f0;}
+.bono{border:none;}
+/***********background ***********/  
+.bg{ background-color: #fff;}
+.bg-gray{ background-color: @bg-color}
 </style>
