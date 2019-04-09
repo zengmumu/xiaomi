@@ -30,6 +30,7 @@ export default {
       pageData:null, //页面数据
       tabs:null,//分类导航
       gallery:[],//幻灯片数据
+      cat:[],
     }
   },
   components: {

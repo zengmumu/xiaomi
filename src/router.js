@@ -4,6 +4,7 @@ import home from './views/home/home.vue'
 import category from './views/category/category.vue'
 import cart from './views/cart/cart.vue'
 import user from './views/user/user.vue'
+import produce from './views/produce/produce.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -13,17 +14,23 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: home
+      component: home,
     },
     {
       path: '/category',
       name: 'category',
-      component: category
+      component: category,
     },
     {
       path: '/cart',
       name: 'cart',
       component: cart
+    },
+    {
+      // 带参数的路由
+      path: '/produce/:id',
+      name: 'produce',
+      component: produce,
     },
     {
       path: '/user',

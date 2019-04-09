@@ -1,18 +1,52 @@
 <template>
   <div id="app">
+   
+        <keep-alive include="home,category,cart">
+        <router-view />    
+        </keep-alive>
+   
     
-      <router-view/>
-    
-    
-    <div class="tabs row tac">
+    <div class="tabs row tac" v-show="isTabs" >
       <router-link  class="col"  to="/">首页</router-link>
       <router-link  class="col" to="/category">分类</router-link>
-      <router-link  class="col" to="/cart">购物车</router-link>
+      <router-link  class="col" to="/cart">购物车({{cartNum}})</router-link>
       <router-link  class="col" to="/user">我 的</router-link>
 
     </div>
   </div>
 </template>
+<script>
+import bus from './bus.js'
+// 导入 vuex里面的映射方法 能够把 vuex里面的方法和数据映射到 vue当前组件里面（快捷）
+// mapState,mapGetters 再computed 成为数据
+// mapMutations mapActions 在methods 里面成为方法
+import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
+export default {
+  data(){
+    return { isTabs:true}
+  },
+  created(){
+     this.isTabs = bus.isTabs;
+    bus.$on("showTabs",(e)=>{
+      console.log("is");
+      this.isTabs = e||bus.isTabs;
+    })
+    this.getGoods();
+  },
+  methods: {
+    ...mapMutations(["addToCart"]),
+    ...mapActions(['getGoods']),
+    showTabs(e){
+      console.log(e,"showtabs");
+    }
+  },
+  computed:{
+    ...mapState(["goods"]),
+    ...mapGetters(["cartNum"]),
+   
+  }
+}
+</script>
 
 <style lang="less">
 /*****变量 **/
@@ -67,10 +101,11 @@ body{
 .col-70{ flex:0 0 70%;}
 .col-80{ flex:0 0 80%;}
 .col-90{ flex:0 0 90%;}
-.col-100{ flex:0 0 100%;}
-.col-33{ flex:0 0 33.3%; max-width:33.3%}
-.col-66{ flex:0 0 66.7%}
-.col-25{ flex:0 0 25%;}
+.col-100{ flex:0 0 100%; max-width:100%}
+.col-33{ flex:0 0 33.3%; max-width:33.3%; box-sizing: border-box;}
+.col-66{ flex:0 0 66.7%; max-width:66.7%}
+.col-25{ flex:0 0 25%;max-width:25%}
+
 
 /*********** 定位系统***********/
 .pr{ position: relative;}
@@ -83,6 +118,8 @@ body{
       bottom:0;
       }
 /*********** 模  块 ***********/  
+.item{line-height: .44rem;}
+.item-s{line-height:.38rem;}
 .tabs{ 
   .pf;
   height:.49rem;
@@ -138,8 +175,21 @@ body{
   border-radius: 0.06rem;
   .iblock;
 }
+.btn-primary{
+  .btn;
+  border:none;
+  color:#fff;
+  background-color:@primary;
+}
 .item{
   line-height: 0.44rem;
+}
+/*********** 圆角 ***********/  
+.r8{border-radius: .08rem;}
+.round-top{
+border-radius:.08rem .08rem 0 0; }
+.round{
+  border-radius:.44rem;
 }
 /*********** 文字对齐 ***********/  
 .tac{ text-align: center;}
@@ -165,6 +215,7 @@ input[type=text]{
 .ofvisible-x{ overflow-x:auto;}
 .ofvisible-y{ overflow-y:auto;}
 /*********** padding ***********/  
+.padding{padding:8px;}
 .plr{ padding-left: 8px; padding-right: 8px;}
 .plr16{ padding-left: 16px; padding-right: 16px;}
 .nopadding{ padding: 0;}
@@ -178,4 +229,34 @@ input[type=text]{
 /***********background ***********/  
 .bg{ background-color: #fff;}
 .bg-gray{ background-color: @bg-color}
+.bg-t{ background-color: transparent;}
+.bg-primary{ color:#fff;background-color:@primary;}
+/***********弹出框 ***********/ 
+.suk{
+  z-index:300;
+}
+.mask{
+  background-color: rgba(0,0,0,.7);
+  z-index: 900;
+}
+.suk-content,
+.suk-body{
+  top:1.5rem;  
+  z-index: 900;
+  
+}
+.suk-body{
+  bottom:.49rem;
+}
+.suk-head{
+  height: 1.5rem;
+}
+.suk-foot{
+  height: .56rem;
+  position: absolute;
+  left:0;
+  bottom:0;
+  width: 100%;
+}
+
 </style>

@@ -19,7 +19,7 @@
                     :key="index"
                     >
                         <div v-if="list.view_type=='cells_auto_fill'">
-                            <img :src="list.body.items[0].img_url" width="100%" alt="">
+                            <img  v-lazy="list.body.items[0].img_url" width="100%" alt="">
                         </div>
                         <div 
                         class="tac"
@@ -31,18 +31,20 @@
                         v-if="list.view_type=='category_group'">
                             <!-- 商品列表 -->
                             <div 
-                            class="col col-33"
+                            class="col col-33 plr"
                             v-for="produce in list.body.items"
                             :key="produce.product_name"
                              >
-                             <a href="" class="block fxsmall " >
-                                 <img :src="produce.img_url"
+                             <router-link class="block fxsmall " :to="'/produce/'+produce.action.path">
+                             <!-- <a href="" class="block fxsmall " > -->
+                                 <img v-lazy="produce.img_url"
                                  width="100%"
                                  alt="">
                                  <span class="block thidden ">
                                      {{produce.product_name}}
                                  </span>
-                             </a>
+                             <!-- </a> -->
+                             </router-link>    
                              </div>
                             <!-- 商品列表 -->
                         </div>
@@ -57,6 +59,7 @@
     </div>
 </template>
 <script>
+
 export default {
     data() {
         return {
@@ -68,12 +71,13 @@ export default {
     },
     methods:{
         getCateData(){
-            this.$http.get("https://biger.applinzi.com/category.php")
+            this.$http.get("http://biger.applinzi.com/category.php")
             .then(xhr=>{
                 this.cateData=xhr.data.data;
                 console.log(this.cateData);
             })
         }
-    }
+    },
+    
 }
 </script>
