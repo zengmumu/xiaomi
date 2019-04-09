@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="sh/shCoreDefault.css">
+  <script src="sh/shCore.js"></script>
+  <script src="sh/shBrushXml.js"></script>
+  <script src="sh/shBrushJScript.js"></script>
+</head>
+<body>
+<h1>vant</h1>
+<p>轻量、可靠的移动端 Vue 组件库</p>
+<p><a href="https://youzan.github.io/vant/#/zh-CN/intro">官网</a></p>
+<h4>示例</h4>
+
+<iframe src="https://youzan.github.io/vant-demo/#/goods" frameborder="0" width="357" style="height:750px;"></iframe>
+<p>
+<img  width="30%" src="https://img.yzcdn.cn/public_files/2017/10/24/7070a8d1d6504b864c605114d32f2aae.png" alt="">
+<img  width="30%" src="https://img.yzcdn.cn/public_files/2017/10/23/e1d70757e3ab88d39a360b704be8f43f.png" alt="">
+<img  width="30%" src="https://img.yzcdn.cn/public_files/2017/10/24/06b8b5ed3692314d434db7f6854dcdbe.png" alt="">
+</p>
+<h4>组件预览</h4>
+<a href="https://youzan.github.io/vant/mobile.html#/zh-CN/">新窗口打开</a><br>
+<iframe src="https://youzan.github.io/vant/mobile.html#/zh-CN/" frameborder="0" width="357" style="height: 750px;"></iframe>
+ 
+
+
+
+<h1>快速上手</h1>
+<h4>脚手架</h4>
+<p>推荐使用 Vue 官方提供的脚手架 Vue Cli 3 创建项目</p>
+<pre class="brush:js">
+# 安装 Vue Cli
+npm install -g @vue/cli
+
+# 创建一个项目
+vue create hello-world
+</pre>
+<h1>示例工程</h1>
+<p>我们提供了一个基于 Vue Cli 3 的示例工程，仓库地址为 <a href="https://github.com/youzan/vant-demo">Vant Demo</a>，示例工程会帮助你了解如下内容：</p>
+<ul>
+<li>基于 vant 搭建单页面应用</li>
+<li>配置 rem 适配方案</li>
+<li>自定义主题色方案</li>
+</ul>
+<h1>安装</h1>
+<b>NPM</b>
+<pre class="brush:js">
+npm i vant -S
+</pre>
+
+<h1>引入组件</h1>
+<b>1. 使用 babel-plugin-import (推荐)</b>
+<p>babel-plugin-import 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式</p>
+<pre class="brush:js">
+# 安装 babel-plugin-import 插件
+npm i babel-plugin-import -D
+</pre>
+<b>配置babel.config.js</b>
+<pre class="brush:js">
+module.exports = {
+  presets: ['@vue/app'],
+  plugins: [
+    [
+      'import',
+      { libraryName: 'vant', libraryDirectory: 'es', style: true },
+      'vant'
+    ]
+  ]
+};
+</pre>
+<b>2. 导入 van 组件 </b>
+<pre class="brush:js">
+  import { NavBar,Icon} from 'vant';
+</pre>
+<b>注册组件</b>
+<pre class="brush:js">
+ components:{
+        [NavBar.name]:NavBar,
+        [Icon.name]:Icon,
+        [Checkbox.name]:Checkbox,
+        [Stepper.name]:Stepper,
+    },
+</pre>
+<b> 3. 使用组件模板</b>
+<pre class="brush:html">
+<van-nav-bar title="标题" left-text="返回" left-arrow>
+  <van-icon name="search" slot="right" />
+</van-nav-bar>
+</pre>
+<b>完整组件案例</b>
+<pre class="brush:html">
+<template>
+  <div>
+       
+    <van-nav-bar title="标题" left-text="返回" left-arrow>
+         <van-icon name="search" slot="right" />
+    </van-nav-bar>
+    <div class="content has-tabs has-header">
+            <div class="row bg">
+                <div class="col-10 col-center"><van-checkbox v-model="checked" checked-color="#ff3300"></van-checkbox></div>
+                <div class="col-30"><img width="100%" src="//i1.mifile.cn/a1/pms_1533266333.04566853.jpg" alt=""></div>
+                <div class="col-50">
+                    <h3>商品标题</h3>
+                    <p>商品售价</p>
+                    <div><van-stepper v-model="val" /></div>
+                </div>
+                <div class="col-10 col-bottom"><van-icon name="delete" /></div>
+            </div>
+    </div>
+    <div class="tabs row nopadding">
+       <div class="col">1196</div>
+       <div class="col tac">继续购物</div>
+       <div class="col tac bg-primary">去结算</div> 
+    </div>
+  </div>
+</template>
+<script>
+import { NavBar,Icon,Checkbox, Stepper} from 'vant';
+export default {
+  components:{
+      [NavBar.name]:NavBar,
+      [Icon.name]:Icon,
+      [Checkbox.name]:Checkbox,
+      [Stepper.name]:Stepper,
+  },
+  data() {
+      return {
+          checked:true,
+          val:true
+      }
+  },
+}
+</script>
+<style lang="less">
+</style>
+</pre>
+
+
+
+
+
+<script>
+ SyntaxHighlighter.highlight(); 
+</script>
+<style>
+body{ max-width: 1200px }
+</style>
+
+</body>
+</html>

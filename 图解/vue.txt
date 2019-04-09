@@ -1,0 +1,1240 @@
+ES6  --------3.19
+let:
+1. let 和var 一样是用来声明变量的
+2. let 在一对{ } 里面起作用
+3. let 不能重复声明
+4. let 声明的变量不会提升
+
+const：
+1. 声明常量的 建议 大写
+2. 声明的值不能被重复赋值（内存地址唯一）
+
+解构：可以声明变量时候把数组或者对象拆开 赋值
+1. 对应解构
+var [a, b] = [100, 50];
+
+2. ...rest 不定参
+var [a, b, ...rest] = [5,20,15,80,92,33]
+rest = [15,80,92,33]
+
+3. 默认值
+var [a=15,b=20] = [25,,35];
+a=25
+b = 20
+
+4. 跳过
+var  [a,,b]=[77,55,88]
+a = 77
+b = 88;
+
+
+
+解构对象
+1. 变量名要和属性名保持一致
+2.  别名
+   var {name，myage=age} = {name:"mumu",age:18, eye:2}
+3. 解构的变量也可以有默认值
+
+
+
+字符串 
+1. 字符串模板
+var name = “木木”；
+var str = `你好我的名字是${name}。`
+2. 去掉空白（ES5）
+   trim（）
+3. 循环输出字符串
+   var  str =“我爱中国”；
+for（let code of str）{
+   console.log(code);
+}
+
+
+数组高阶函数  （ES5）
+forEach 循环 遍历数组每个内容，
+
+arr.forEach(functiton(elem,index,self){
+// elem 当前遍历的元素
+// 当前的下标
+// 当前元素
+})
+参数可以省略
+
+map    映射 ：把一个数组映射成为一个新的数组
+var arr2 = arr.map(function(elem){ return elem*2 })
+
+reduce 累计   前一次遍历的结果，是下一次参数a
+var result =  arr.reduce(function(a,b){  return a*10+b })
+
+filter   过滤   产生一个新的数组 如果遍历返回为真则新数组保留该元素
+var arr = [1,3,20,55,20];
+var arr2 =arr.filter(function(elem){ return elem>=20})
+some  只要一个为真返回真
+all       所有为真返回真
+
+
+
+=======================3.20
+
+0. let const
+
+1. for of 遍历字符串
+    字符模板语法  `${变量名}`
+    去掉空白	trim()
+2. 解构
+   [a,b] = [45,22]
+   {name,age}={name:'mumu',age:18}
+   可以隔开，
+  剩余意思
+3. 数组  
+   遍历   forEach
+   映射   map
+   累计   reduce
+   过滤   filter
+
+
+
+4.箭头函数
+   匿名函数的简写方式
+
+   参数 =>执行语句/返回值
+  （）=>执行语句/返回值
+    (arg1,arg2)=>执行语句/返回值
+
+   参数 =>{ 
+   执行语句1，
+   执行语句2
+   return  返回内容
+     }
+
+
+   参数 =>{ 
+   执行语句1，
+   执行语句2
+   return  （返回的对象）
+     }
+  改变this的指向
+
+
+
+
+
+3.20 
+class
+
+class Parent {
+	constructor（name，age）{this.age =age; this.name="name"}
+                breath（）{}
+	static say（）{}
+}
+
+静态方法调用
+Parent.say();
+
+实例化对象
+var p = new Parent（"mumu", 25）;
+
+实例方法调用
+p.breath();
+
+实例属性调用
+p.name
+
+
+继承
+class Son extends Parent{ 
+  constructor（name，age）{
+	super（name，age）//调用父亲函数构造方法
+  }  
+   
+}
+
+对象
+属性简写 {name,age}
+方法简写 breath(){}
+继承   __proto__:parent
+动态属性名  [name+"str"]:"mmu"
+
+
+
+方法;
+默认参
+不定参数
+解构参数
+call
+apply
+对象类型判断
+最大，最小数组值
+
+
+ES6 迭代器
+arr 数组
+arr.keys() 数组的下标集合
+arr.values() 数组值得集合
+arr.entries()  下标 和值得结合
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------3.21
+绑定style
+<p :style="{fontSize:'48px',color:'blue'}">
+
+<p :style="styObj">
+<script>
+	new Vue({
+		data:{
+			styObj:{fontSize:'36px',color:'pink'}
+		}
+	})
+</script>
+
+绑定类class
+1. 绑定属性
+<h1 :class="vue Data属性">
+<h1 :class="color">
+new Vue({
+	data:{
+            		color:'gold'
+	}
+})
+
+<style>
+  .gold{ background:gold}
+</style>
+
+
+2. 对象绑定
+<h1 :class = "{class名: 布尔值}"
+<h1 :class = "{pink: flag，blue:isLog}"
+当 flag为真时候  h1被绑定 pinkclass 否则则不帮
+
+
+事件
+<h1 v-on:事件名=“方法处理函数”>
+<h1 v-on:click="say()">
+new Vue({
+    methods:{
+        say(){ //语句， 能通过this获取vue实例的data属性和methods方法}
+    }
+})
+
+简写
+<h1 @:事件名=“方法处理函数”>
+
+修饰符
+<h1@:click.once=“方法处理函数”>
+ @keyup.enter	enter键盘被弹起
+
+列表渲染
+<li v-for="(item,index) in lists" :key="index">{{item}}</li>
+
+条件渲染
+<p v-if="布尔值">       dom
+<p v-else>
+<p v-show="布尔值">    css
+
+
+属性绑定
+ v-bind:属性名
+ :属性名
+
+文本绑定
+{{}}
+v-text=“”
+v-html=“”
+
+   computed	计算
+   watch		监听
+   directive	指令
+   handler		处理
+   localstorage          本地 存储
+   created		创建完毕
+   deep		深的
+
+
+-----------------------------------------3.21
+什么是vue？
+ 轻量级 渐进式 js框架
+ 取angular 指令
+ 取react     组件
+ 尤雨溪
+
+vue里面的内置指令
+文本
+ {{}}
+v-text	 绑定文本内容
+v-html	绑定html内容
+
+属性
+v-bind:属性名=“”	绑定属性
+
+事件
+v-on:事件名=“”	事件名
+
+条件
+v-if
+v-else
+v-show	
+
+
+列表渲染指令
+
+v-for:{(item.index) in list}
+绑定class
+:class={class名：布尔值}
+
+style渲染
+:style={fontSize:"24px",color:"red"}
+
+Vue 对象三大属性
+var app = new Vue({
+ 	el:""	，// vue渲染的范	围
+	data:{},     // vue里面的数据
+ 	methods:{}		// vue里面的方法
+  
+})
+
+
+------------------------------------总结
+computed  计算
+从现有的值计算新的值
+computed（）{
+   新数据的名称：function（）{}
+}
+
+watch         监测
+监控某个数据，并调用函数
+watch:{
+  数据的名称：{
+     handler:function(新的值，老的值){}，
+    deep：true
+ }
+}
+
+localStorage 本地存储
+数据存储到客户端本地
+getItem（name）
+setItem（name，值）
+JSON.parse(str)         字符串转对象
+JSON.stringify(obj)	对象转字符串
+
+directives     自定义指令
+指令所在的元素
+指令的值
+
+directives：{
+  focusItem:{
+   inserted:function(元素，指令数据){
+   }
+  }
+}
+
+v-focus-item 调用
+
+
+created（）{} //vue 创建完毕调用】】】】】】】】】】】】
+
+----------------------------组件
+定义：一块可以重复利用的 html+方法+数据
+         完成一个局部的功能
+      一个vue页面是由多个组件拼接而成
+      组件就是一个局部的小vue
+
+定义全局组件（在哪儿都能使用的组件）
+Vue.component("组件名",{ template:"组件的模板"})
+Vue.component("my-con",{ template:"<div>组件的模板</div>"})
+
+调用组件 <my-con></my-con>
+
+定义局部组件
+var child = {
+ template：“组件的模板”，
+ data:function(){ return { num:1}},
+ methods"{组件的方法}
+}
+
+注册局部组件
+
+new Vue（{
+   components:{mychild:child}
+}）
+
+
+父亲给子元素传递参数 props （属性的方式传递）
+<child :good=“good”>
+
+
+接收参数
+
+child = {
+// props：[good],
+ props:{
+   good:{default:xxx}
+ }
+}
+
+在vue 是单向数据流
+子组件最好不要改变父亲元素的数据
+
+--------------------------------------------
+VUE 组件：一段可以重复利用的代码模块
+
+component 组件
+props	属性
+emit	发射
+template  模板
+data
+methods  组件
+
+------------全局组件
+Vue.conponent(
+	“组件名”，{
+	template:	`组件模板`	
+	})
+new Vue({
+	el:"#app"
+})
+------------局部组件
+1. 定义
+var  组件名  ={template：`组件模板`}
+new Vue（{
+	el：“#app”，
+	component：{组件名，}
+}），
+2. 注册
+------------组件参数传递
+父传子
+------------组件参数验证与默认值
+props:{
+}
+------------组件数据必须是函数
+
+data(){}
+
+
+
+
+字符串相关方法
+长度			length		 
+查找			indexOf		 
+后面找      			 lastIndexOf                            
+从第几位 截取到第几位   	substring    
+        
+从第几位 截取几位		substr	 
+返回字符串下标对应的字符        charAt
+搜索			search 		
+替换			replace 
+unicode 编码转为字符串	 fromCharCode
+转换为数组		 split
+
+--------------DOS常用命令
+切换盘符
+d： 回车
+c： 回车
+
+切换目录
+cd  目录名称
+cd  / 回到根目录
+cd  ../回到上一层目录
+
+查看目录
+dir
+
+创建文件夹
+md 文件夹名称
+
+
+删除文件夹
+rd 文件夹
+
+删除文件
+
+del 文件名
+
+cls 清屏
+help 所有命令
+
+ipconfig 查看当前ip
+
+ping 查看 主机是否链接通
+
+光标 上下翻动
+ctrl+C 终止意思
+
+
+
+
+===================VUE-CLI
+脚手架的意思
+快速搭建Vue项目 ，开发，测试 ，上线，打包
+
+===================NodeJS
+简单的说 Node.js 就是运行在服务端的 JavaScript。
+
+Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。
+
+Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+
+
+==================NPM
+工具包管理器（压缩，css自动前缀，ES6-ES5）下载器
+
+
+==================webPack
+
+
+
+
+
+
+npm 常用命令
+
+npm   -v 		查看版本
+npm  init  	初始化项目
+npm  install  名称  	安装一个插件包
+npm  list                   模块列表
+npm uninstall  名称   卸载
+
+包有些是开发时候需要，上线不需要
+npm install 名称 --save  运行时候需要
+npm install 名称 --save-dev 开发需要
+
+有时候我们的包需要在多个项目中都时候，可以全局安装
+npm install 名称 -g 全局安装
+在任何文件夹都能访问
+
+安装的时候指定版本
+npm install jquery@1.9.1
+npm install jquery^1.9.1
+安装的jquery 大于1.9.1 小于 2.0
+
+npm update jquery 
+从1.9.1 升级到 1.12.4  
+升级不会越过大版本
+
+安装最高版本
+npm install jquery @latest 
+
+npm install 会下载package.json里面规定的所有包
+
+npm 常用命令
+
+npm -v 			查看版本
+npm init 			初始化项目
+
+安装
+npm install 包名 		安装
+npm install 包名1 包名2 	安装多个
+npm i 包名		简写
+npm install 包名 -g		全局安装
+npm install 包名 --save	运行环境使用
+npm install 包名  --save-dev	开发使用（打包上线后不用）
+npm install  包名@版本	指定版本
+npm install  包名^版本             ^1.2.2	大于1.2.2 小于2.0
+npm install  包名@latest	安装最新版本
+npm install		重新安装或者更新 package.json规定的所有项目
+
+更新
+npm update 包名		更新（不会更新到大版本）
+
+卸载
+npm uninstall  包名1 包名2         卸载一个或者多个
+
+列表
+npm list			 该项目 包列表
+npm list --depth=0		 列表层级指定
+
+
+如果需要删全局安装包
+
+npm root -g 找到 全局安装目录
+
+
+node_modules  	包和插件
+public	         	html模板文件
+src		项目源文件
+bable.config.js	es6转es5的配置文件
+package.json	项目配置
+package-lock.json	锁住项目配置文件
+readme.md	说明项目
+
+-----------------------src 真正工作的目录
+assets		项目资源存放地址
+component	项目组件存放
+App.vue		项目根文件
+main.js		项目主入口js文件
+
+
+App.vue  根组件
+导入 child 的组件
+
+1. import child from ‘’
+2. components：{child}
+
+
+child .vue 子组件
+---template  html
+---script        js存放的地方
+export default {
+	name：“”
+}
+
+---style	    css存放的地方
+
+
+
+npm run serve  启动vue项目
+
+
+
+
+
+
+nodeJS（创造一个本地服务器环境）
+npm命令  包管理器、下载器（ nodeJs自带）
+
+npm install -g @vue/cli	用npm 下载vue的脚手架
+			
+                                                （不安装vue脚手架 下面个命令是没有办法执行）
+vue ui 			启动脚手架界面命令（localhost:8080）
+			下载一整套vue项目所需要的内容
+
+vue create			通过命令行的方式创建 下载 一整套 vue项目需要的内容
+
+
+创建了一个目录 myvue（项目目录）
+
+在cmd 里面进入 myvue
+
+npm run serve     		启动 myvue 这个项目
+
+myvue			就是我们的项目目录
+
+localhost:8081		本地浏览器去查看vue项目的地址
+
+- Local:   http://localhost:8080/
+- Network: http://192.168.14.2:8080/
+
+
+
+通过vue ui 创建了一个 myvue的项目
+
+cd myvue 
+npm runserve  启动myvue这个项目
+
+ App running at:
+  - Local:   http://localhost:8080/
+  - Network: http://192.168.14.2:8080/
+
+
+
+
+B端
+C端
+
+B2B
+B2C
+C2B
+C2C
+O2O
+P2P
+....
+
+crm
+ERP
+
+
+---------------B端产品
+表格多 ，图表多，功能多，复杂
+
+1. 前端沟通   使用的什么技术
+    Vue
+     
+    React
+    angular
+    jqueryui
+    。。。。
+
+2. 框架
+    vue   element UI
+     react  antdDesign
+
+3. 去框架的官网查看样式   
+    框架下载组件 sketch axure
+
+4. 和前端沟通 图表采用什么库
+    echarts
+    hightcharts
+    d3
+   当要设计图表的时候大概的样式可以和图表接近，颜色粗细 都是可以改变的（设计统一）
+5. 安全的宽度
+    自适应宽
+    1440 
+    1200 的安全宽度
+
+
+BS
+CS
+
+
+
+npm install yarn -g
+
+
+
+
+本讲内容 vue 路由
+在一个vue单页面里面模拟页面切换
+
+vue 路由的安装
+给com项目添加路由
+
+vsc 打开com 项目
+
+在浏览器中查看com项目
+
+删除默认的内容
+
+
+==============app.vue
+导航
+<router-link to="地址">名称</router-link>
+
+显示区域
+<router-view></router-view>
+
+css
+// 选中的链接
+.router-link-active{}
+
+=============router.js 路由配置文件
+router:[
+{path:"检测的地址",component:对应的组件}，
+{path:"检测的地址",component:对应的组件}
+]
+
+
+----运行老师文件
+
+1. 切换到文件所在的地址
+2. npm install
+    yarn add
+    安装文件需要的包
+3. npm run serve 在浏览器查看
+   yarn serve
+
+
+
+
+
+
+
+
+
+-------路由
+1. 安装路由
+2. <router-link to="">
+    <router-view>
+3. 配置路由
+   router：[
+   {path:"/home",component:组件}
+  ]
+
+
+
+=======路由的参数
+1. 配置
+{path:"/produce/:id"}
+
+2. 页面中获取
+$route.params.id
+
+=======路由跳转
+1. 返回
+$router.go(-1)
+2. 前进
+$router.go(1)
+3. 跳转指定页面
+$router.push("/about")
+
+
+
+
+=======子路由
+配置
+{path:"/detail",component:detail,
+ children:[
+  {path:"arg",component:arg}
+  ]
+}
+
+页面
+
+<router-link to="/detail/arg">
+
+<router-view>
+
+
+=========重定向
+由一个页面，重新跳转到新的页面
+{path:"",redirect:"comment"},
+
+
+=========别名
+baidu.com
+baidu.com/home.html
+
+ {path:"/home",component:home,alias:["/","/main"]},
+给路由地址一个新额名字
+
+============404
+ {path:"*",component:err}
+
+
+================吸星大法-axios
+把别的（同门）内容吸入到当前的网页里面来（ajax get 方法）
+ajax 同源策略
+www.baidu.com/index.html
+www.baidu.com/abc.html
+
+www.baidu.com:8080
+www.baidu.com:8000
+不能 端口不同
+
+www.baidu.com
+www.taobao.com
+不能 域名不同
+
+m.baidu.com
+www.baiud.com
+不能 子域名不同
+
+http：//www.baidu.com
+https：//www.baidu.com
+不能   协议不同
+
+
+必须域名相同  端口不同不行  域名不同 子域名不同  协议不同
+
+
+
+==axios ajax的工具
+1. 安装
+    a. vue ui 项目管理器  插件搜索安装
+    b. cmd 手动安装（切换到项目目录再安装）
+      npm install --save axios
+      yarn add  --save axios
+
+2. 放入vue
+   a. 导入
+  import axios from ‘axios’
+   b.挂载vue
+   Vue.prototye.$http=axios;
+
+3. 使用axios
+   this.$http.get(接口地址)
+   .then(
+         function(res){  //如果获取成功}，
+         function（err）{// 如果失败了}
+    )
+
+4. 接口文件地址(爱笑话)
+   https://biger.applinzi.com/duan/jok.php
+   方法 get
+   页面  page:0
+
+
+====渲染数据到页面
+
+====加载更多
+
+=====页面变成手机端
+
+===== 项目打包
+vue ui >配置>公共路径 ./
+
+打包
+a . cmd 
+	npm run  build
+	yarn build
+b.vue ui
+	vue ui>任务>build>运行
+
+项目会生成在一个dist 目录
+
+
+===== 打包的项目变成手机app
+
+
+
+
+
+
+=========
+1. 登录，流程
+2. 路由守卫
+3. 路由元信息
+
+---------------回顾路由
+router-link	切换路由
+router-view	显示路由
+配置
+router:[
+{path:"/home",component:组件}
+]
+子路由 children
+
+路由的参数
+route.params.参数
+
+路由切换
+router.push("/home")
+router.go(-1)
+
+路由重定向
+redirect
+
+路由的别名
+alias：
+
+路由404
+{path:"*"}
+
+========axios
+1. 导入
+import axios from ‘axios’；
+这个是从 node_module 到入的，只需要写axios名称
+
+2. 挂载
+Vue.prototype.$http = axios;
+
+
+3.使用
+
+this.$http.get(url)
+.then(
+(成功信息)=>{}，
+（失败信息)=>{}
+)
+
+========打包
+
+1. 执行打包
+vue ui
+	vue ui>任务>build>运行
+
+cmd  
+              npm run build
+
+注意 根路由 /  相对路径 ./
+
+vue ui >配置>公共路径 ./
+
+
+
+
+2. 打包好的目录地址
+   dist
+
+
+==========4.1
+登录
+1. login 页面
+2. user   用户页面
+3. 配置路由
+
+实现登录
+1. 登录的接口
+
+axios.get（url）
+axios.post（url，{请求数据}）
+
+axios({
+url:请求地址，
+method：POST|GET|PUT|DELETE,
+data:请求的数据
+配置内容
+})
+
+特别注意 POST 需要url编码
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+
+axios 吸星大法，只能是同门（同源策略）
+非同门
+1. JSON
+2. 另外一方允许 xhr2 方法  
+服务器端 写了
+Access-Control-Allow-Origin: http://localhost:8080
+Access-Control-Allow-Origin: *
+服务器允许  http://localhost:8080访问本域名的数据
+
+ajax post get 都会把本地的cookie 上传到服务器
+非同门本地cookie信息不上传
+withCredentials:true, 非同源 上传cookie （需要服务器端允许）
+
+
+
+
+
+
+
+
+
+
+
+
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+this.$http(
+{url:'url',
+method:"POST",					withCredentials:true,//本地cookie 发送给服务器，让服务session知道我的登录状态
+data:``,
+})
+
+接口地址
+登录
+http://www.520mg.com/member/index_login.php
+用户信息
+http://www.520mg.com/member/ajax_login.php
+注销
+http://www.520mg.com/member/index_login.php
+data:`dopost=exit`,
+
+
+
+前端登录状态保持
+1. 向后端发送数据  
+2. 后端给tocken （登录状态标识符号）,设置cookie
+3. 其他页面 看tocken（可以存在cookie  ，存在 localStrorage）
+
+------cookie 和 ls 可以本地更改 前端登录状态 不靠谱
+
+后端检查前端登录状态
+1. 前端的cookie 会被发送到 后端
+2. 后端通过加密解密后 让cookie 与 session对比查看登录状态
+
+
+传统的做法
+
+
+现代app 
+登录  后端给前端一个tocken（加密）
+前端向后端要的所有页面 要的时候都附带一个http头信息
+包含前端的tocken
+前端tocken 加密解密和后端进行比对  查看前端当前的状态
+
+
+=========Vue数据传递
+1. 父亲传子元素   props
+2. 子元素传父亲  $emit 方式
+3. 兄弟之间        bus.js 文件
+    var bus = new Vue（）；
+          bus.tocken = 信息
+          bus.setTocken=function（val）{
+           bus.tocken = val 
+         } 
+
+         bus.getTocken = function(){
+        return bus.tocken
+     }
+
+   使用 
+    谁需要数据，谁引用bus.js
+3. 兄弟之间  Vuex 
+
+
+
+
+
+-----登录的流程
+-----数的共享
+       ---定义
+       var bus = new Vue（）
+       ---导出
+       export default bus；
+       ---导出
+       import  bus from “bus.js”
+      
+-----组件内部的守卫
+       当路由进入之前，更新完毕，离开
+       beforeRouterEnter((to,from,next)=>{})
+       在这个方法里面 next 被执行  next（true） next（地址）
+
+-----路由全局守卫
+      1. 把需要权限的页面加上  meta 元信息
+      2. 进行全局守卫
+      
+
+======获取用户信息
+
+====== 退出
+
+1. 执行退出接口
+url：http://www.520mg.com/member/index_login.php
+data:`dopost=exit`,
+method：POST
+
+2.退出成功
+在busjs里面 删除token
+在cookie 里面删除 token
+跳转到登录
+
+
+=====用户信息登录的时候就有了
+=====能否存在bus一份
+=====进入用户页面时候 按bus里面有没有用户信息
+有 直接获取
+没有 通过接口获取
+接口获取失败  跳转到登录
+
+
+
+
+
+
+
+
+
+
+
+ 登录&页面的权限控制
+1. 登录流程
+    a.客服端发送数据给服务端
+    b.服务端验证 ，设置客户端的cookie 和服务端session
+    C.验证成功，向客户端发送 token 相关数据
+    d.客户其他页面看 是否有tocken 是否有cookie
+    e.请求页面时候会发送头信息给服务端，包含cookie
+      服务端通过 cookie和session加密解密的比对 验证是否有权限，
+2. 页面守卫
+    
+    组件内守卫
+  	beforeRouteEnter
+    全局守卫
+ 	beforeEach（（to，from，next）=>{}）
+3. 组件间数据的共享
+     var bus = new Vue();
+           bus.data 
+      export default bus;
+     import bus from 'bus'
+
+4. 获取用户信息，和注销
+  配置关于 post的编码
+
+   axios({
+    ulr:
+    method:
+    data:
+    cookie是否上传，
+    
+})
+.then(function（）{}，function（）)
+ .catch(function (error) {    console.log(error);  });
+
+=============
+01. swiper 的宽设置为 .swiper 元素的宽
+02 .slider 的宽设置为 .swiper 元素的宽
+03 如果 .slider 里面有图片  设置图片的宽为100%
+04 .swiper-container 宽设置为 .swiper元素的宽*slider长度
+05 .swiper overflow：hidden；
+
+首页
+https://biger.applinzi.com/page.php
+购物车
+https://biger.applinzi.com/cart.php
+分类
+https://biger.applinzi.com/category.php
+产品
+https://biger.applinzi.com/product.php?id=9144
+
+
+this.$nextTick(()=>{})
+页面内容渲染完毕后调用
+
+<div ref="sw">
+this.$refs.sw 通过vue获取一个页面中的元素
+
+
+git init 初始化 git
+git add 文件名   将文件提交到暂存区
+git commit -m "说明" 将暂存区的文件提交给 git分支
+git push -u origin master 将文件提交到远程 master分支
+第二次提交不用带 -u
+
+如果没有通过git add添加到暂存盘 可以通过 
+git checkout -- 文件名  还原工作区的的文件
+
+git log --oneline 显示版本号和提交信息
+git reflog --oneline 显示撤销的版本号
+
+git reset --hard 7ed150b 撤销到 7ed150b这个版本
+
+
+
+产品
+https://biger.applinzi.com/product.php?id=9144
+
+01 搭建produce产品页的足迹
+02 配置路由
+03 获取产品数据 
+     3.1通过接口  https://biger.applinzi.com/product.php?id=9144
+     3.2 展现数据
+     3.2.1制作幻灯片
+     重新计算出 gallery 需要的数据类型
+     导入swiper 引用swiper
+     3.3 titleview
+03 给分类添加链接
+04  产品添加导航
+
+05   bus.js 数据传递
+       进入 produce 页面 隐藏tabs    （App.vue）
+       离开显示 tabs
+       组件间事件与数据的传递
+      5.1 创建一个bus
+      import vue from 'vue'
+     var bus = new Vue()
+     export default bus;
+     
+     5.2 发送事件
+     bus.$emit("事件名"，数据)
+
+    53 接受事件
+    bus.$on(事件名,处理函数)
+
+06 suk 标题 
+    
+
+Vue 插件
+vant 有赞  手机端
+elementUI  pc端 B端
+vux   手机端
+
+购物车接口
+https://biger.applinzi.com/cart.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

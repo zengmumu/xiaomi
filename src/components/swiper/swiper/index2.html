@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <style>
+    *{margin: 0;
+    padding: 0;}
+    .swiper{ border:5px solid red;}
+    </style>
+  
+</head>
+<body>
+    <div class="swiper">
+        <div class="slide"><img src="images/a.jpg" alt=""></div>
+        <div class="slide"><img src="images/b.jpg" alt=""></div>
+        <div class="slide"><img src="images/c.jpg" alt=""></div>
+        <div class="slide"><img src="images/d.jpg" alt=""></div>
+    </div>
+
+    <script>
+            // 1. .swiper-container 来包括所有的的slide.他的宽高是第一个slide宽高 overflowhidden
+            // 0张 current  
+            //构建一个swiper 函数对象
+            // goSlide 切换幻灯片
+            // 需要一个dom元素来获取html的结构
+            function Swiper (opt){
+                this.dom = document.querySelector(opt.dom); //html元素
+                this.current = 0;   //播放到第几张
+                this.timer=null;   // 定时器
+                this.init();       //初始化幻灯片
+              
+            }
+            //  初始化swiper
+            Swiper.prototype.init=function(){
+                this.renderDom();
+                this.bindDom();
+                this.auto();
+            }
+            // 渲染html结构
+            Swiper.prototype.renderDom=function(){
+                    console.log("幻灯片开始渲染html结构了")
+                    // 创建一个div
+                   this.wrap = document.createElement("div");
+                   //  获取到d幻灯片
+                   this.slides = document.querySelectorAll(".slide");
+                   this.len = this.slides.length;//幻灯片的长度
+                   // 设置class
+                   this.wrap.className = "swiper_container";
+                   this.width = this.dom.clientWidth;
+                   // 设置宽
+                
+                   // 设置 slides 浮动
+                for(let i=0;i<this.len;i++){
+                       this.slides[i].style.float="left";
+                       this.slides[i].style.width=this.width+"px";
+                       this.slides[i].querySelector("img").style.width = "100%";
+                      
+                   }
+                   // 设置高
+                   this.wrap.style.height = (this.slides[0].clientHeight)+"px";
+                   this.wrap.style.width = (this.len*this.width)+"px"
+                   this.dom.style.overflow="hidden";
+              
+                   // 设置wrap内容 为dom的内容
+                   this.wrap.innerHTML = this.dom.innerHTML;
+                   // 清空dom
+                   this.dom.innerHTML="";
+                   //  dom 插入wrap
+                   this.dom.appendChild(this.wrap);
+
+            }
+            //  绑定事件
+            Swiper.prototype.bindDom=function(){
+                    console.log("幻灯片绑定事件了")
+                    this.dom.addEventListener("mouseover",()=>{ this.overHd()});
+                    this.dom.addEventListener("mouseout",()=>{this.auto()})
+                    this.wrap.addEventListener("touchstart",(e)=>{this.startHd(e)})
+                    this.wrap.addEventListener("touchmove",(e)=>{this.moveHd(e)})
+                    this.wrap.addEventListener("touchend",(e)=>{this.endHd(e)})
+                    this.wrap.addEventListener("transitionend",(e)=>{this.wrap.style.transition=""})
+            }
+            //切换幻灯片
+            Swiper.prototype.goSlide=function(){
+                    console.log("幻灯片切换到第"+this.current+"张")
+                    this.wrap.style.transition="all ease .6s";
+                    if(this.current>=4){
+                        this.current = 0;
+                    }
+                    this.wrap.style.transform = `translate(${this.current*this.width*-1}px,0)`;
+            }
+            // 自动播放
+            Swiper.prototype.auto =function(){
+                 
+                  this.timer=setInterval(()=>{
+                    this.current++;
+                    
+                    this.goSlide();
+                  },3000)
+                 
+            }
+            // 停止播放
+            Swiper.prototype.overHd=function(){
+              
+                clearInterval(this.timer)
+            }
+            Swiper.prototype.startHd=function(e){
+                clearInterval(this.timer)
+              this.startX = e.touches[0].pageX;
+              
+              
+           }
+           Swiper.prototype.moveHd=function(e){
+              this.moveX = e.touches[0].pageX;
+              this.offsetX = this.moveX-this.startX;
+              
+              this.wrap.style.transform = `translate(${this.current*this.width*-1+this.offsetX}px,0)`;
+              
+            }
+            Swiper.prototype.endHd=function(e){
+                console.log(this.offsetX);
+                //如果滑动距离超过50就转下一页
+              if(this.offsetX<=50*-1){
+                 
+                  this.current++;
+                  this.goSlide()
+              }else{
+                this.goSlide() 
+              }
+              this.startX = 0;
+              this.moveX=0;
+              this.offsetX=0;
+              this.auto;
+            }
+ 
+ 
+
+
+            //  实例化函数对象
+            window.onload = function(){
+                new Swiper({dom:".swiper"});
+            }
+            
+    </script>
+</body>
+</html>

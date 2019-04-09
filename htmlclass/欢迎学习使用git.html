@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="sh/shCoreDefault.css">
+  <script src="sh/shCore.js"></script>
+  <script src="sh/shBrushXml.js"></script>
+  <script src="sh/shBrushJScript.js"></script>
+</head>
+<body>
+  <h1>git 简介</h1>
+  <p>Git是目前世界上最先进的分布式版本控制系统</p>
+  <p>Linus虽然创建了Linux</p>
+  <p>Linus花了两周时间自己用C写了一个分布式版本控制系统，这就是Git！一个月之内，Linux系统的源码已经由Git管理了！</p>
+  <p>Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitHub网站上线了，它为开源项目免费提供Git存储，无数开源项目开始迁移至GitHub，包括jQuery，PHP，Ruby等等。</p>
+  <h1>在Windows上安装Git</h1>
+  <p>可以从Git官网直接下载 <a href="https://git-scm.com/downloads">安装程序</a>安装程序</p>
+  <h1>初始化git</h1>
+  <pre class="brush:js">
+    git init
+  </pre>
+  <h1>添加远程仓库</h1>
+  <p>1. 注册github账号 并创建仓库</p>
+  <img src="images/git1.png" alt="">
+  <p>2. 制作钥匙</p>
+  <p>2.1 打开gitbash</p>
+  <img src="images/git2.png" alt="">
+  <p>2.2 输入命令 $ ssh-keygen -t rsa -C "youremail@example.com"</p>
+  <p>2.3 在用户目录里找到.ssh目录，打开 id_rsa.pub文件复制</p>
+  <p>2.4 加入到github里面</p>
+  <p><img src="images/git4.png" alt=""></p>
+  <p><img src="images/git5.png" alt=""></p>
+  <p>2.5  进入项目目录添加远程仓库</p>
+  <pre class="brush:js">
+   git remote add origin git@github.com:zengmumu/xiaomi.git
+  </pre>
+  <p><img src="images/git3.png" alt=""></p>
+<p>2.6 推送本地代码到远程</p>
+  <pre class="brush:js">
+git push -u origin master
+  </pre>
+  <h1>工作区和暂存区</h1>
+  <p><img src="https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0" alt=""></p>
+  <pre class="brush:python">
+  git add 文件名         //添加到暂存区
+  git commit -m "名称"   //提交到版本分支
+  git log                //查看信息
+  git reflog             //查看相关历史信息
+  </pre>
+  
+  
+  <h1>后退与修改</h1>
+ <pre class="brush:python">
+  git checkout --文件名    // 测试工作区操作
+  git reset --hard 版本id  // 回退版本
+ </pre>
+
+ <h1>分支</h1>
+ <pre class="brush:python">
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>
+
+创建+切换分支：git checkout -b <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
+ </pre>
+
+ <h1>分支策略</h1>
+ <p>首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
+<p>那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；</p>
+<p>你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。</p>
+<p>所以，团队合作的分支看起来就像这样：</p>
+<img src="https://cdn.liaoxuefeng.com/cdn/files/attachments/001384909239390d355eb07d9d64305b6322aaf4edac1e3000/0" alt="">
+
+
+
+
+<script>
+ SyntaxHighlighter.highlight(); 
+</script>
+<style>
+body{ max-width: 1200px }
+</style>
+
+</body>
+</html>

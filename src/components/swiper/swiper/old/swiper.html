@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			.swiper{ 
+				width: 400px; 
+				min-height: 220px; 
+				border:2px solid red;
+				overflow: hidden;
+				}
+			.slider{
+				width: 400px;
+				float: left;
+			}
+			.slider img{ width: 100%;}
+		</style>
+	</head>
+	<body>
+		<div class="swiper">
+			<div class="slider"><img src="a.jpg" alt="" /></div>
+			<div class="slider"><img src="b.jpg" alt="" /></div>
+			<div class="slider"><img src="c.jpg" alt="" /></div>
+			<div class="slider"><img src="d.jpg" alt="" /></div>
+		</div>
+		<script>
+				// 创建一个类
+				class Swiper{
+					// 构造函数
+					constructor(el){
+								// 获取最大的元素
+						this.el = document.querySelector(el);
+								// 获取幻灯片的页数
+						this.slider = this.el.querySelectorAll(".slider");
+								// 获取幻灯片的个数
+						this.len = this.slider.length;
+								// 获取幻灯片的宽度
+						this.width = this.el.offsetWidth; 
+								// 初始化
+						this.init();
+					}
+					init(){
+					
+						this.renderDom();
+						this.bindDom()
+					}
+				// 渲染dom 结构
+				renderDom(){
+							// 1. 需要一div元素
+					let container = document.createElement("div");
+							// 给一个class
+						container.className="sliders";
+							// 设置内容
+						container.innerHTML = this.el.innerHTML;
+							// 清空父亲元素
+						this.el.innerHTML = "";
+							// 设置宽度
+						container.style.width =this.len*this.width+"px";
+							// 插入元素
+						this.el.appendChild(container);
+							// 挂载到当前对象
+						this.container = container;
+					
+				}
+				// 绑定事件
+				bindDom(){
+						// 绑定触摸
+					this.container.addEventListener("touchstart",(e)=>{this.startHd(e,this)})
+						// 绑定移动事件
+					this.container.addEventListener("touchmove",(e)=>{this.moveHd(e,this)})	
+						
+				}
+				// 开始触摸屏幕
+				startHd(e,self){
+						// 存储点击时候的位置
+					self.startX = e.touches[0].pageX;
+				}
+				
+				moveHd(e,self){
+						// 获取手指移动时候点的位置
+					self.endX = e.touches[0].pageX;
+						// 获取移动的距离
+					self.offsetX =self.endX-self.startX;
+						// 移动container；
+					self.container.style.transform = `translate(${self.offsetX}px,0)`
+				}
+				
+			}
+			
+			new Swiper(".swiper");
+			
+		</script>
+	</body>
+</html>

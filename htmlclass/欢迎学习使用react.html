@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="sh/shCoreDefault.css">
+  <script src="sh/shCore.js"></script>
+  <script src="sh/shBrushXml.js"></script>
+  <script src="sh/shBrushJScript.js"></script>
+</head>
+<body>
+<h1>  react</h1>
+<p> 用于构建用户界面的 JavaScript 库</p>
+<h4>  特点</h4>
+<ul>
+<li><p><b>1.声明式设计</b> −React采用声明范式，可以轻松描述应用。</p></li><li><p><b>
+2.高效</b> −React通过对DOM的模拟，最大限度地减少与DOM的交互。</p></li><li><p><b>
+3.灵活</b> −React可以与已知的库或框架很好地配合。</p></li>
+
+<li><p><b>4.JSX</b> − JSX 是 JavaScript 语法的扩展。React 开发不一定使用 JSX ，但我们建议使用它。</p></li>
+<li><p><b>5.组件</b> − 通过 React 构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中。</p></li>
+<li><p><b>6.单向响应的数据流</b> − React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。</p></li>
+</ul>
+<h4>React-搭建脚手架</h4>
+<ol>  
+    <li>  安装 nodeJS</li>
+    <li>  安装create-react-app</li>
+</ol>
+<pre class="brush:js">  
+npm install -g create-react-app
+</pre>
+
+<h4>  创建项目</h4>
+<pre class="brush:js">  
+create-react-app myreact
+// myreact 项目名称
+</pre>
+<h4>  生成的目录</h4>
+<img src="https://upload-images.jianshu.io/upload_images/4952742-343db3a8690ad1fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/269/format/webp" alt="">
+
+<hr>  
+<b>启动项目</b>
+<pre class="brush:js">
+cd myreact
+yarn start
+// npm run start
+</pre>
+<div class="tip">
+如果安装了 yarn 优先使用 yarn start
+也可以 使用  npm run start 启动项目
+</div>
+<div class="tip">
+默认项目地址：http://localhost:3000/
+</div>
+
+<h1>  React文件结构和JSX语法</h1>
+<h4>第一个react项目</h4>
+<p>打开 src/App.js 删除默认代码 得到 hello react</p>
+<pre class="brush:js">
+import React, { Component } from 'react';
+//导入React和 React.Component
+
+class App extends Component {
+// App根组件继承 React.compoent  
+  render() {
+// 渲染 并返回一段html结构
+    return (
+      <div className="App">
+        <h1>你好react</h1>
+      </div>
+    );
+  }
+}
+
+export default App;
+//导出默认 App根组件
+
+</pre>
+
+<h1>JSX语法</h1>
+<p>JSX 是一个看起来很像 html 的 JavaScript 语法扩展。</p>
+<p><b>js和html混合</b></p>
+<h4>1. 只能有一个根节点</h4>
+<pre class="brush:js">
+ return (
+      <div className="App">
+        <h1>你好react</h1>
+      </div>
+    );
+  // Classname="App" 就是根节点
+</pre>
+<h4>2. 可以执行javascript表达式 {}</h4>
+<pre class="brush:js">
+{1+1}   
+{i == 1 ? '对的!' : '错误的'}
+</pre>
+
+<h4>3. 类名class 变成 className</h4>
+<pre class="brush:html">
+  <div className="App">
+  </div>
+</pre>
+
+<h4>4. 行内样式 展开</h4>
+<pre class="brush:js">
+var myStyle = {
+  "font-size": "14px",
+  "color": "#FF0000"
+}
+return (
+  <div className="App">
+    <h1 style={myStyle}>你好react</h1>
+  </div>
+);
+</pre>
+
+<h4>5. 注释 {/* 注释 */}</h4>
+
+<h4>6. 数组里面可以直接写html节点</h4>
+<pre class="brush:js">
+var arr = [
+  <h1>组件渲染</h1>,
+  <h1>虚拟dom</h1>
+]
+return (
+  <div className="App">
+   {arr}
+  </div>
+);
+</pre>
+<hr>
+<h1>组件</h1>
+<p>可以这么说，一个 React 应用就是构建在 React 组件之上的。</p>
+<h4>创建组件 Child.js</h4>
+<pre class="brush:js">
+import React,{Component} from 'react'
+export default class Child extends Component{
+    render(){
+        return (
+            <div className="child">
+                    <h1>我是子组件</h1>
+                    <hr/>
+            </div>
+        );
+    }
+}
+</pre>
+<h4>调用组件</h4>
+<b>01. 导入组件</b>
+<pre class="brush:js">
+import Child from './components/Child.js'
+</pre>
+<b>02 使用组件</b>
+<pre class="brush:js">
+return (
+  <div className="App">
+    <Child/>
+    <h1>App根组件</h1>    
+  </div>
+);
+</pre>
+<h4>完成代码</h4>
+<pre class="brush:js">
+import React, { Component } from 'react';
+
+import Child from './components/Child.js'
+// 导入组件
+
+class App extends Component { 
+  render() {
+    return (
+      <div className="App">
+        <Child/>
+        <h1>App根组件</h1>    
+      </div>
+    );
+  }
+}
+
+export default App;
+//导出默认 App根组件
+</pre>
+<hr>
+<h1>React State(状态)</h1>
+<p>state 是组件的当前状态，可以把组件简单看成一个“状态机”，根据状态 state 呈现不同的 UI 展示。
+
+一旦状态（数据）更改，组件就会自动调用 render 重新渲染 UI，这个更改的动作会通过 this.setState 方法来触发。</p>
+
+<h4>初始化组件 state</h4>
+<p>添加一个类构造函数来初始化状态 this.state</p>
+<pre class="brush:js">
+ constructor() {  
+    super();  //调用父对象构造函数
+    this.state={name:"mumu",age:18}
+  }
+</pre>
+<h4>使用state</h4>
+<pre class="brush:js">
+return (
+    <div className="App">
+        大家好我是{this.state.name}今年{this.state.age}岁了
+    </div>
+  );
+</pre>
+<h4>完整代码</h4>
+<pre class="brush:js">
+import React, { Component } from 'react';
+
+class App extends Component { 
+  constructor() {  
+    super();  
+    this.state={name:"mumu",age:18}
+  }
+  render() {
+    return (
+      <div className="App">
+          大家好我是{this.state.name}今年{this.state.age}岁了
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<hr>
+<h1>React Props</h1>
+<p>state 和 props 主要的区别在于 props 是不可变的，而 state 可以根据与用户交互来改变。这就是为什么有些容器组件需要定义 state 来更新和修改数据。 而子组件只能通过 props 来传递数据。</p>
+<h4>传递prop给子组件</h4>
+<pre class="brush:js">
+return (
+<div className="App">
+  <Child name="mumu"/>
+  <Child name="曾庆林"/>
+  <Child />
+</div>
+);
+</pre>
+<h4>子组件使用props</h4>
+<pre class="brush:html">
+<div className="child">
+  <h1>我是子组件 我的名字是{this.props.name}</h1>
+  <hr/>
+</div>
+</pre>
+<h4>完整代码</h4>
+<b>App.js</b>
+<pre class="brush:html">
+import React, { Component } from 'react';
+import Child from './components/Child'
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+      <Child name="mumu"> </Child>
+      <Child name="曾庆林"></Child>
+      <Child ></Child>
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<br>
+<b>Child.js</b>
+<pre class="brush:js">
+import React,{Component} from 'react'
+export default class Child extends Component{
+     
+    render(){
+        return (
+            <div className="child">
+                    <h1>我是子组件 我的名字是{this.props.name}</h1>
+                    <hr/>
+            </div>
+        );
+    }
+}
+Child.defaultProps = {
+    name:"保密"
+}
+// props 默认值
+</pre>
+<hr>
+<br>
+<h1>事件处理</h1>
+<p>React 元素的事件处理和 DOM 元素类似</p>
+<p>React 事件绑定属性的命名采用驼峰式写法，而不是小写。</p>
+<p>如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM 元素的写法)</p>
+<b>javascript写法</b>
+<pre class="brush:html">
+<button onclick="showMsg()">
+  按钮
+</button>
+</pre>
+<b>react写法</b>
+<pre class="brush:html">
+<button onClick={showMsg}">
+  按钮
+</button>
+</pre>
+<b>完整react代码</b>
+<pre class="brush:js">
+import React, { Component } from 'react';
+class App extends Component {  
+  showMsg(){
+    alert("来自react问候!");
+  }
+  render() {
+     
+    return (
+      <div className="App">
+        <button onClick={this.showMsg}>按钮</button>     
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<hr>
+<br>
+<h1>setState 改变react状态</h1>
+<pre class="brush:js">
+import React, { Component } from 'react';
+
+class App extends Component {  
+  constructor(props) {
+    super(props);
+    this.state = {num:1}
+  }
+  addNum(){
+    this.setState({num:this.state.num+1})
+  }
+  render() {     
+    return (
+      <div className="App">
+        <p>{this.state.num}</p>
+        <button onClick={()=>{this.addNum()}}>按钮</button>     
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<div class="tip">
+用箭头函数是为了保证函数里面this的正确指向br
+你也可以用bind方法<br>
+
+</div>
+<pre class="brush:html">
+ <button onClick={this.addNum.bind(this)}>按钮</button>  
+</pre>
+<hr>
+<br>
+<h1>React 表单双向绑定</h1>
+<pre class="brush:js">
+import React, { Component } from 'react';
+class App extends Component {  
+  constructor(props) {
+    super(props);
+    this.state = {num:1}
+  }
+  changeNum(e){
+    this.setState({num:e.target.value})
+  }
+  render() {     
+    return (
+      <div className="App">
+      <input type="text" value={this.state.num} onChange={this.changeNum.bind(this)}/>
+      <h1>{this.state.num}</h1>
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<hr>
+<br>
+<h1>动态的添加更改class</h1>
+<pre class="brush:js">
+import React, { Component } from 'react';
+import './App.css';
+class App extends Component {  
+  constructor(props) {
+    super(props);
+    this.state = {bg:'red'}
+  }
+  changeClass(e){
+    this.setState(pre=>{
+      return ({bg:pre.bg==='red'?'blue':'red'});
+    })
+  }
+  render() {     
+    return (
+      <div className="App">
+        <button className={this.state.bg} onClick={this.changeClass.bind(this)}>按钮</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<br>
+<hr>
+<br>
+<h1>添加style</h1>
+<pre class="brush:js">
+render() {   
+    var css = {
+      borderRadius:"6px",
+      padding:"8px 16px",
+      color:'#fff',
+      background:'blue'
+    }  
+    return (
+      <div className="App">
+        <button style={css}>按钮</button>
+      </div>
+    );
+  }
+</pre>
+<hr>
+<br>
+<h1>React 条件渲染</h1>
+<p>条件性地渲染一块内容</p>
+<b>三目运算符号</b>
+<pre class="brush:js">
+render() {
+    var isLogin = true;
+    return (
+      <div className="App">
+        {isLogin?'欢迎您回来主人':'请登陆'}      
+      </div>
+    );
+  }
+</pre>
+<b>&&运算符</b>
+<p>在 JavaScript 中，true && expression 总是返回 expression，而 false && expression 总是返回 false。<br>
+
+因此，如果条件是 true，&& 右侧的元素就会被渲染，如果是 false，React 会忽略并跳过它。</p>
+<pre class="brush:js">
+render() {
+    var isLogin = false;
+    return (
+      <div className="App">
+        {isLogin &&'欢迎您回来主人'}      
+      </div>
+    );
+  }
+</pre>
+<hr>
+<br>
+
+<h1>列表渲染</h1>
+<p>我们可以使用 JavaScript 的 map() 方法来创建列表。</p>
+<h4>初始化列表数据</h4>
+<pre class="brush:js">
+ constructor(props) {
+    super(props);
+    this.state={
+      list:[{name:'vue'},{name:'react'},{name:'angular'}]
+    }
+  }
+</pre>
+<b>map渲染列表</b>
+<pre class="brush:js">
+ return (
+      <div className="App">
+        
+        {this.state.list.map(
+          (item,index)=>{
+            return (
+              <div key={index}>{item.name}</div>
+            )
+          }
+        )}
+      
+      </div>
+    );
+</pre>
+<b>完整代码</b>
+<pre class="brush:js">
+import React, { Component } from 'react';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      list:[{name:'vue'},{name:'react'},{name:'angular'}]
+    }
+  }
+  
+  render() {
+    return (
+      <div className="App">        
+        {this.state.list.map(
+          (item,index)=>{
+            return (
+              <div key={index}>{item.name}</div>
+            )
+          }
+        )}      
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<div class="tip">
+Key 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。<br>
+一个元素的 key 最好是这个元素在列表中拥有的一个独一无二的字符串。通常，我们使用来自数据的 id 作为元素的 key: <br> 
+元素没有确定的 id 时，你可以使用他的序列号索引 index 作为 key：
+</div>
+<br>
+<hr>
+<h1>React Refs</h1>
+<p>React 支持一种非常特殊的属性 Ref ，你可以用来绑定到 render() 输出的任何组件上。</p>
+<p>你可以通过使用 this 来获取当前 React 组件，或使用 ref 来获取组件的引用</p>
+<pre class="brush:js">
+import React, { Component } from 'react';
+class App extends Component {  
+getFocus(){
+  this.refs.inp.focus();
+} 
+  render() {  
+    return (
+      <div className="App">
+      <input type="text" ref="inp" />
+        <button onClick={this.getFocus.bind(this)}>获取焦点</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+</pre>
+<div class="tip">
+  我们也可以使用 getDOMNode()方法获取DOM元素
+</div>
+<br>
+<hr>
+    <h1 id="组件生命周期">组件生命周期</h1>
+<p>一般来说，一个组件类由 <code>extends Component</code> 创建，并且提供一个 <code>render</code>
+方法以及其他可选的生命周期函数、组件相关的事件或方法来定义。</p>
+<p>一个简单的例子：</p>
+<pre class="brush:js">
+import React, { Component } from 'react';
+
+class App extends Component {  
+  getFocus(){
+    this.refs.inp.focus();
+  } 
+  render() {  
+    return (
+      <div className="App">
+      <input type="text" ref="inp" />
+        <button onClick={this.getFocus.bind(this)}>获取焦点</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+</pre>
+<h2 id="getinitialstate"><code>getInitialState</code></h2>
+<p>初始化 <code>this.state</code> 的值，只在组件装载之前调用一次。</p>
+<p>如果是使用 ES6 的语法，你也可以在构造函数中初始化状态，比如：</p>
+<pre class="brush:js"> 
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { num:1 };
+  }
+
+  render() {
+    // ...
+  }
+}
+</pre>
+<h2 id="getdefaultprops"><code>getDefaultProps</code></h2>
+<p>只在组件创建时调用一次并缓存返回的对象（即在 <code>React.createClass</code> 之后就会调用）。</p>
+<p>因为这个方法在实例初始化之前调用，所以在这个方法里面不能依赖
+<code>this</code> 获取到这个组件的实例。</p>
+<p>在组件装载之后，这个方法缓存的结果会用来保证访问 <code>this.props</code> 的属性时，当这个属性没有在父组件中传入（在这个组件的 JSX
+属性里设置），也总是有值的。</p>
+<p>如果是使用 ES6 语法，可以直接定义 <code>defaultProps</code>
+这个类属性来替代，这样能更直观的知道 default props 是预先定义好的对象值：</p>
+<pre class="brush:js">
+Child.defaultProps = { name: '保密' };
+</pre>
+<h2 id="render"><code>render</code></h2>
+<p><strong>必须</strong></p>
+<p>组装生成这个组件的 HTML 结构（使用原生 HTML 标签或者子组件），也可以返回 <code>null</code> 或者 <code>false</code>，这时候 <code>ReactDOM.findDOMNode(this)</code> 会返回 <code>null</code>。</p>
+<h2 id="生命周期函数">生命周期函数</h2>
+<h3 id="装载组件触发">装载组件触发</h3>
+<p><code>componentWillMount</code></p>
+<p>只会在装载之前调用一次，在 <code>render</code> 之前调用，你可以在这个方法里面调用 <code>setState</code>
+改变状态，并且不会导致额外调用一次 <code>render</code></p>
+<p><code>componentDidMount</code></p>
+<p>只会在装载完成之后调用一次，在 <code>render</code> 之后调用，从这里开始可以通过
+<code>ReactDOM.findDOMNode(this)</code> 获取到组件的 DOM 节点。</p>
+<p>如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异步操作阻塞UI)。</p>
+<h3 id="更新组件触发">更新组件触发</h3>
+<p>这些方法不会在首次 <code>render</code> 组件的周期调用</p>
+<ul>
+<li><code>componentWillReceiveProps</code></li>
+<li><code>shouldComponentUpdate</code></li>
+<li><code>componentWillUpdate</code></li>
+<li><code>componentDidUpdate</code></li>
+</ul>
+<h3 id="卸载组件触发">卸载组件触发</h3>
+<ul>
+<li><code>componentWillUnmount</code></li>
+</ul>
+<p>更多关于组件相关的方法说明，参见：</p>
+<ul>
+<li><a href="http://facebook.github.io/react/docs/component-specs.html" target="_blank">Component Specs</a></li>
+<li><a href="http://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle" target="_blank">Component
+Lifecycle</a></li>
+<li><a href="http://facebook.github.io/react/docs/component-api.html" target="_blank">Component API</a></li>
+</ul>
+<h4>完整的代码</h4>
+<pre class="brush:js">
+import React, {Component } from 'react'
+export default class Child extends Component {
+
+  constructor(props){
+    // 组件初始化
+    super(props);
+    this.state={date:new Date(),flag:true}
+  }
+  // 第一次 渲染完毕 适合 setTimeout interval   ajax
+  componentDidMount(){
+    this.Id = setInterval(()=>{
+      this.setState({date:new Date()});
+    },1000)
+  }
+  componentDidUpdate(){
+  console.log("组件更新");
+
+  }
+  // 组件卸载调用
+  componentWillUnmount(){
+    clearInterval(this.Id);
+  }
+  switchHd(){
+    this.setState({flag:!this.state.flag});
+  }
+
+  render() {
+    return (
+        <div className="child">
+          <p>{this.state.flag?<h1>我喜欢冬天的雪</h1>:<h1>我喜欢夏天的风</h1> }</p>
+          <button onClick={this.switchHd.bind(this)}>切换</button>             
+        </div>
+      )
+  }
+}
+
+</pre>
+<br>  
+<hr>
+<h1>子组件调用父组件方法|向父组件传递参数</h1>
+<b>父亲传一个函数props</b>
+<pre class="brush:js">
+import React, { Component } from 'react';
+import Child from './components/Child'
+class App extends Component {  
+  showMsg(msg){
+    alert(msg);
+  }
+  render() {  
+    return (
+      <div className="App">
+        <Child name="曾庆林" fun={this.showMsg}></Child>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+</pre>
+<b>子组件在箭头函数执行props</b>
+<pre class="brush:js">
+import React,{Component} from 'react'
+export default class Child extends Component{
+     
+    render(){
+        return (
+            <div className="child">
+                    <h1>我是子组件 我的名字是{this.props.name}</h1>
+                    <button onClick={()=>{this.props.fun('我爱我的祖国')}}>调用父亲函数方法</button>                   
+                    <hr/>
+            </div>
+        );
+    }
+}
+</pre>
+
+<script>
+ SyntaxHighlighter.highlight(); 
+</script>
+<style>
+body{ max-width: 1200px }
+</style>
+
+</body>
+</html>
