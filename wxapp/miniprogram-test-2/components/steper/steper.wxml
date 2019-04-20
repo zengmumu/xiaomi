@@ -1,0 +1,6 @@
+<!--components/steper/steper.wxml-->
+<view class="steper iblock">
+  <button size='mini' class="reduce iblock" data-step="{{step*-1}}" bindtap="changeInp">-</button>
+  <input type='number' value="{{num}}" class="inp iblock"></input>
+  <button size='mini' class="plus iblock" data-step="{{step}}" bindtap="changeInp">+</button>
+</view>

@@ -1,0 +1,13 @@
+<!--pages/cart/cart.wxml-->
+<view class="fbig tac item">购物车</view>
+<view class="row" wx:for="{{goods}}" wx:key="{{index}}">
+  <view class="col-10 nopadding fsmall">{{item.title}}</view>
+  <view class="col-40">
+    <steper num="{{item.num}}" data-index="{{index}}" bind:numevent="numChange"> </steper>
+  </view>
+  <view class='col-20'>价格:{{item.price}}</view>
+  <view class="col-30"> 小计:{{item.num*item.price}}</view>
+</view>
+
+
+

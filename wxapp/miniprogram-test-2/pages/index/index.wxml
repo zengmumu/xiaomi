@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="row  ">
+    <view class="col plr">
+      <input type="text" value="{{current}}" bindinput="inputHd" bindconfirm="addItem" placeholder='输入待办事项'></input>
+    </view>
+    <view class="col-20 plr">
+      <button type="primary" class="btn" bindtap="addItem">添加</button>
+    </view>
+  </view>
+  <view class="list plr">
+    <view class='item' wx:for="{{list}}" wx:key="{{index}}">
+    <text>{{item}}</text>
+    <button size="mini" data-index="{{index}}" class="btn fr" bindtap="deleteItem">x</button>
+    </view>
+  </view>
+  <navigator url='/pages/news/news'>新闻</navigator>
+  <button bindtap='goNews'>回新闻</button>
+
+</view>

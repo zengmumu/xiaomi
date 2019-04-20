@@ -1,0 +1,11 @@
+<input type='text' bindconfirm="search"></input>
+<view class="map_container"> 
+  
+  <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" show-location="true" markers="{{markers}}" bindmarkertap="makertap"></map> 
+</view> 
+ <slider bindchange="sliderChange" value="{{scale}}" min="1" max="20" show-value />
+<view class="place_info"> 
+  <text>{{placeData.title}}</text> 
+  <text>{{placeData.address}}</text> 
+  <text>{{placeData.telephone}}</text> 
+</view> 

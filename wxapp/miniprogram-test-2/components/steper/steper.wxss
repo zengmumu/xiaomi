@@ -1,0 +1,3 @@
+/* components/steper/steper.wxss */
+.iblock{display: inline-block;}
+.inp{width: 100rpx; border:1rpx solid #f2f2f2; text-align: center}

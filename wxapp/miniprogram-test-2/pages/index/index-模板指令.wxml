@@ -1,0 +1,34 @@
+
+
+<view>文本渲染---------------------------------</view>
+<view>{{msg}}</view>
+<view>{{msg+'我好中意你啊'}}</view>
+<view>{{2+2}}</view>
+<view>{{msg.length}}</view>
+<view>{{msg.length>4?'很长的文本':'不够4'}}</view>
+<view>条件渲染----------------------------------</view>
+
+<view>三目运算:{{islog?'欢迎回来主人':'请登录'}}</view>
+<view wx:if="{{islog}}">欢迎您回来主人</view>
+<view wx:else>你好坏呀，请登录</view>
+
+<view>列表渲染----------------------------------</view>
+<view wx:for="{{list}}">{{index+1}}--{{item}}</view>
+<view wx:for="{{list}}" wx:for-index="num" wx:for-item="myitem">{{num+1}}--{{myitem}}</view>
+
+<view>template 模板-----------------------</view>
+<template name="modal">
+  <view>标题:{{title}}</view>
+  <view>内容:{{content}}</view>
+  <view>页脚:{{foot}}</view>
+</template>
+<template is="modal" data="{{...item}}"></template>
+<view>---------</view>
+<template is="modal" data="{{...item}}"></template>
+
+<view>import-公用模块-----------</view>
+<import src="temp.wxml"/>
+<template is="a"></template>
+<template is="a"></template>
+<view>include-公用模块-----------</view>
+<include src="tpl.wxml"/>

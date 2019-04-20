@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/cart/cart",
+    "pages/weather/weather",
+    "pages/map/map",
+    "pages/news/news",
+    "pages/joks/joks",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/content/content",
+    "pages/login/login"   
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#142dbb",
+    "navigationBarTitleText": "美妙清单",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/joks/joks",
+        "text": "爱笑话",
+        "iconPath": "images/jok.png",
+        "selectedIconPath": "images/joka.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "清单",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/lista.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "新闻",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/lista.png"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "text": "地图",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/lista.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/lista.png"
+      }
+    ],
+    "selectedColor": "#1296db"
+  }
+}

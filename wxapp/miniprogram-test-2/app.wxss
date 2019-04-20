@@ -1,0 +1,357 @@
+/**app.wxss**/
+/*****变量 **/
+view,text,input,page{margin:0; padding:0;}
+.fbig {
+  font-size: 34rpx;
+}
+.fsmall {
+  font-size: 22rpx;
+}
+.fxsmall {
+  font-size: 16rpx;
+}
+/*********** body***********/
+.container {
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 13 rpx;
+  background-color: #fff;
+  color: #333;
+}
+/*********** 栅格系统***********/
+.row {
+  display: flex;
+  width: 100%;
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+.row-wrap {
+  flex-wrap: wrap;
+}
+.row-center {
+  align-items: center;
+}
+.row-right {
+  align-items: flex-end;
+}
+.row-left {
+  align-items: flex-start;
+}
+.col {
+  flex: 1;
+}
+.col-top {
+  align-self: flex-end;
+}
+.col-center {
+  align-self: center;
+}
+.col-bottom {
+  align-self: flex-end;
+}
+.col-10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+.col-20 {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+.col-30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+.col-40 {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.col-50 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.col-60 {
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+.col-70 {
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+.col-80 {
+  flex: 0 0 80%;
+  max-width: 80%;
+}
+.col-90 {
+  flex: 0 0 90%;
+  max-width: 90%;
+}
+.col-100 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.col-33 {
+  flex: 0 0 33.3%;
+  max-width: 33.3%;
+}
+.col-66 {
+  flex: 0 0 66.7%;
+  max-width: 66.7%;
+}
+.col-25 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+/*********** 定位系统***********/
+.pr {
+  position: relative;
+}
+.pa {
+  position: absolute;
+}
+.pf {
+  position: fixed;
+}
+.full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+/*********** 模  块 ***********/.item {
+  line-height: 88rpx;
+}
+.item-s {
+  line-height: 76rpx;
+}
+.tabs {
+  position: fixed;
+  height: .49rpx;
+  bottom: 0;
+  background-color: #fff;
+  box-shadow: 0 -10 rpx 30 rpx rgba(220, 220, 220, 0.3);
+}
+.content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f2f2f2;
+}
+.has-tabs {
+  bottom: 98rpx;
+}
+.has-header {
+  top: 88rpx;
+}
+.has-sub {
+  top: 176rpx;
+}
+.bar-header {
+  position: fixed;
+  height: 88rpx;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.bar-header .btn:nth-of-type(1) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: none;
+}
+.bar-header .btn:nth-of-type(2) {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+}
+.sub-header {
+  position: fixed;
+  height: 88rpx; 
+  left: 0;
+  z-index: 100;
+  top: 44px;
+}
+.sub-header .btn:nth-of-type(1) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: none;
+}
+.sub-header .btn:nth-of-type(2) {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+}
+.btn {
+  line-height: 88rpx;
+  padding: 0 16rpx;
+  border: 1px solid #f2f2f2;
+  border-radius: 12rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-primary {
+  border: none;
+  color: #fff;
+  background-color: #ff6700;
+}
+.btn-sm{
+  line-height: 76rpx;
+}
+.btn-xs{
+  line-height: 60rpx;
+}
+.item {
+  line-height: 88rpx;
+ 
+}
+.list .item{
+  border-bottom:1rpx solid #f2f2f2;
+   font-size:28rpx;
+}
+/*********** 圆角 ***********/.r8 {
+  border-radius: 16rpx;
+}
+.round-top {
+  border-radius: 16rpx 16rpx 0 0;
+}
+.round {
+  border-radius: 88rpx;
+}
+/*********** 文字对齐 ***********/.tac {
+  text-align: center;
+}
+.tar {
+  text-align: right;
+}
+.thidden {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*********** 默认控件 ***********/
+input[type=text] {
+  border: none;
+  display: block;
+  width: 100%;
+  line-height: 88rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+  box-shadow: inset 0rpx 0rpx 4rpx #999 ;
+  padding: 0 8rpx;
+}
+/*********** display ***********/.block {
+  display: block;
+}
+.iblock {
+  display: inline-block;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.ofhidden {
+  overflow: hidden;
+}
+.ofhidden-x {
+  overflow-x: hidden;
+}
+.ofvisible-x {
+  overflow-x: auto;
+}
+.ofvisible-y {
+  overflow-y: auto;
+}
+/*********** padding ***********/.padding {
+  padding: 8px;
+}
+.plr {
+  padding-left: 16px;
+  padding-right: 16rpx;
+}
+.plr32 {
+  padding-left: 32px;
+  padding-right: 32rpx;
+}
+.nopadding {
+  padding: 0;
+}
+/***********border ***********/.bo {
+  border: 1rpx solid #f0f0f0;
+}
+.bol {
+  border-left: 1rpx solid #f0f0f0;
+}
+.bor {
+  border-right: 1rpx solid #f0f0f0;
+}
+.bot {
+  border-top: 1rpxsolid #f0f0f0;
+}
+.bob {
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.bono {
+  border: none;
+}
+/***********background ***********/.bg {
+  background-color: #fff;
+}
+.bg-gray {
+  background-color: #f2f2f2;
+}
+.bg-t {
+  background-color: transparent;
+}
+.bg-primary {
+  color: #fff;
+  background-color: #ff6700;
+}
+/***********弹出框 ***********/.suk {
+  z-index: 300;
+}
+.mask {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 900;
+}
+.suk-content,
+.suk-body {
+  top: 300rpx;
+  z-index: 900;
+}
+.suk-body {
+  bottom: 98rpx;
+}
+.suk-head {
+  height: 300rpx;
+}
+.suk-foot {
+  height: 112rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.fr{float:right;}
+.card{ 
+  margin: 32rpx;
+  border-radius: 6rpx;
+  box-shadow: 0 4rpx 8rpx #ccc;
+  }
+.card-title{
+  line-height: 88rpx;
+  border-bottom:1rpx solid #f2f2f2;
+  font-size:34rpx;
+  padding: 0 32rpx;
+}
+.card-content{
+  line-height: 51rpx;  
+  font-size:34rpx;
+  padding: 32rpx;
+  color:#999;
+}
+

@@ -1,0 +1,32 @@
+<!--pages/news/news.wxml-->
+<view class='container'>
+  <view class='bg-gray'>
+  <scroll-view class='cats' scroll-x="{{true}}" scroll-left="{{scrollLeft}}" >
+   <text wx:for="{{modules}}" wx:key="{{item.id}}" class="{{index==current?'active':''}}" data-index="{{index}}" bindtap="catTapHd">{{item.name}}</text>
+  </scroll-view>  
+  </view>
+  <view>
+  <swiper
+  indicator-dots="{{true}}"
+  autoplay="{{true}}" 
+  circular="{{true}}"  
+>
+  <block wx:for="{{slides}}" wx:key="{{item.img}}">
+    <swiper-item>
+      <image  src="{{item.image}}"  class="slide-image"  />
+    </swiper-item>
+  </block>
+</swiper>
+  </view>
+  <view class='news'>
+    <view class="row bob" data-item="{{item}}" bindtap="goContent" wx:for="{{news}}" wx:key="{{item.docid}}">
+      <view class='col-60'>
+        <view>{{item.title}}</view>       
+      </view>
+      <view class='col-40 col-top'>
+        <image  class="img" mode='aspectFill' src="{{item.image.length>11?item.image:'http://i1.go2yd.com/image.php?type=thumbnail_336x216&url='+item.image}}"></image>
+      </view>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="card" wx:for="{{list}}" wx:if="{{item.title}}" wx:key="{{item.docid}}">
+    <view class="card-title">{{item.title}}</view>
+    <view class="card-content">{{item.summary}}</view>
+  </view>
+</view>

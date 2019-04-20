@@ -1,0 +1,5 @@
+<view>我是页面标题</view>
+<view> 
+<include src="aside.wxml"/>
+我是页面内容</view>
+<view>我是页面页脚</view>

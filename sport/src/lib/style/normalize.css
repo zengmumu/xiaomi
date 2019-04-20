@@ -1,0 +1,78 @@
+
+
+
+article, aside, blockquote, body, button, code, dd, dialog, div, dl, dt, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, input, legend, li, nav, ol, p, pre, section, td, textarea, th, ul {
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+}
+fieldset, img {
+	border: 0
+}
+a, body {
+	color: #999;
+}
+img{vertical-align:middle}
+
+input, select, textarea {
+	font-size: 100%
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+caption, th {
+	text-align: left
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: 500
+}
+li, ol, ul {
+	list-style: none
+}
+em, i {
+	font-style: normal
+}
+del {
+	text-decoration: line-through
+}
+address, caption, cite, code, dfn, em, th, var {
+	font-style: normal;
+	font-weight: 500
+}
+img {
+	vertical-align: middle;
+}
+a {
+	text-decoration: none
+}
+a:active {
+	opacity: .7
+}
+* {
+	-webkit-tap-highlight-color: transparent
+}
+html {
+	-webkit-text-size-adjust: none;
+	overflow-y: scroll
+}
+
+
+.clear:after {
+	content: '';
+	display:block;
+	visibility: hidden;
+	clear:both;
+}
+.fl {
+	float: left
+}
+.fr {
+	float: right
+}
+
+.hide {
+	display: none
+}
+

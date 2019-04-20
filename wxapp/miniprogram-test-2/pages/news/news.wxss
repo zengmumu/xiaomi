@@ -1,0 +1,14 @@
+/* pages/news/news.wxss */
+.cats{
+  width: 100%;
+  
+  white-space: nowrap;
+  line-height: 88rpx;
+  font-size:28rpx;
+  overflow-x:auto;
+  /* height: 88rpx; */
+}
+.cats text{ padding: 0 30rpx;}
+.cats .active{ color: dodgerblue}
+.slide-image{ width: 750rpx;}
+.news .img{ width: 100%; height: 200rpx;}

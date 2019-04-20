@@ -31,6 +31,7 @@ export default new Router({
       path: '/produce/:id',
       name: 'produce',
       component: produce,
+      beforeEnter:function(to,from,next){}
     },
     {
       path: '/user',
